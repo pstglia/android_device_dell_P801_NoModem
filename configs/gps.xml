@@ -1,48 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <glgps xmlns="http://www.glpals.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.glpals.com/ glconfig.xsd" >
-  <!--HAL Confguration  -->
-  <hal 
-       acPortName="tcp:/data/gps/brcm_gps_unix_socket"
-       lBaudRate="115200"
-       cLogEnabled="false"
-       acLogDirectory="/data/gps/log/"
-
-       acNvStoDir="/data/gps/"
-       acNmeaOutName="/data/gps/nmea_out"
-       ctrlPipe="/data/gps/glgpsctrl"
-
-       SyncLto="true"
-       ltoFileName="lto2.dat"
-       acLtoDir="/data/gps/"
-       LbsSyncLtoThresholdDays="1"
-
-       arp-supl-enable="true"
-       arp-supl-cap-msb="true"
-       arp-supl-cap-msa="true"
-       arp-supl-cap-ecid="false"
-       acSuplServer="supl.google.com"
-       SuplPort="7276"
-       tlsEnable="false"
-       tlsCertPath="/data/gps/AGPS.pem"
-       tlsStopForInvPath="true"
-       arp-supl-ssl-method="TLSv1"
-       arp-supl-ssl-verify="peer"
+  <!--HAL Configuration-->
+  <hal
+       PortName="/dev/gps/ttyGPS"
+       BaudRate="921600"
+       LogEnabled="false"
+       LogDirectory="/data/gps/log"
+       CtrlPipe="/data/gps/glgpsctrl"
+       GpioNStdbyPath="/proc/driver/bcms"
+       GpioDelayMs="130"
+       NvStorageDir="/data/gps/"
+       NmeaOutName="/data/gps/nmeapipe"
+       SuplEnable="true"
+       SuplMsbCapable="true"
+       SuplMsaCapable="true"
+       SuplEcidCapable="false"
+       SuplUseApn="true"
        SuplVersion="1"
        SuplMinorVersion="0"
-       arp-supl-use-apn="false"
-       
-       IgnoreJniTime="true"
-
-       SensorsEnable="false"
+       SuplTlsEnable="true"
+       SuplTlsCertPath="/system/vendor/etc/gps.cer"
+       SuplTlsStopForInvPath="true"
+       SuplSslMethod="TLSv1"
+       SuplSslVerify="none"
+       SuplLogEnable="false"
+       SuplLogFullName="/data/gps/log/supllog.txt"
+       HttpSyncLto="false"
+       LtoSyncThresholdDays="3"
+       LtoFileName="lto2.dat"
+       LtoDir="/data/gps/"
+       HulaEnable="false"
+       HulaSensorMask="0"
+       GpsPowerControlEnable="true"
+       GpsPowerControlSysPath="/dev/gps/ttyGPSPowerControl"
+       GpsPowerControlEnableArg="auto"
+       GpsPowerControlDisableArg="on"
+       ReAidingOnHotStart="false"
+       Log="FILE"
+       AssertEnabled="false"
   />
 
-  <gll 
-       LogPriMask="LOG_DEBUG"
+  <gll
+       LogPriMask="LOG_INFO"
        LogFacMask="LOG_GLLAPI | LOG_NMEA | LOG_RAWDATA | LOG_GLLIO"
        FrqPlan="FRQ_PLAN_26MHZ_2PPM"
-       RfType="GL_RF_2076_BRCM_EXT_LNA"
-       DynMode="DYN_AUTOMATIC"
-       ignore_rom_alm="true"
+       RfType="GL_RF_4752_BRCM_EXT_LNA"
+       BurstMode="true,10,20,0"
+       PsfEnablePedVdr="true"
+       PmmPercent="50"
   />
+
+  <gll_features
+       EnableLowPowerPmm="true"
+       EnableLowPowerPedestrian="true"
+       EnableLowPowerDriving="true"
+  />
+
+<!----------------------------------------------------------------------------->
+<!-- List of jobs can be performed by the GPS controller    -->
+
+<!-- Periodic Position Fix using default settings -->
+<job id="Periodic">
+    <task>
+        <req_pos/>
+    </task>
+</job>
+
+<!-- Systematic Test: Repetitive cold starts -->
+<job Id="Cold_Starts">
+    <task Repeat="100">
+        <startup
+            IgnoreOsc="false"
+            IgnoreRomAlm="false"
+            IgnoreRamAlm="false"
+            IgnorePosition="true"
+            IgnoreNav="true"
+            IgnoreTime="true"
+        />
+        <req_pos ValidFixes="1"/>
+    </task>
+</job>
+
+<!-- Systematic Test: Repetitive warm starts
+    Stored ephemeris data is discarded before the start begins
+    This simulates GPS receiver start after it was left off for more that 4 hours
+-->
+<job Id="Warm_Starts">
+    <task Repeat="100">
+        <startup IgnoreNav="true"/>
+        <req_pos ValidFixes="1"/>
+    </task>
+</job>
+
+<!-- Systematic Test: Repetitive hot starts  -->
+<job Id="Hot_Starts">
+    <task Repeat="100">
+        <req_pos ValidFixes="1"/>
+    </task>
+</job>
+
+<!-- Starts single-channel factory test mode.
+     The signal is expected to initially be in the range from -125 dBm to -142 dBm
+     with the frequency offset range from -2 ppm to +2 ppm for this mode to provide
+     reliable results.
+
+     The name Factory_High_SNR is legacy only. The recommended name is
+     Factory_Track_Test.
+-->
+<job Id="Factory_High_SNR">
+    <task Id="test" Repeat="1">
+        <startup
+            IgnoreOsc="true"
+            IgnoreRomAlm="true"
+            IgnoreRamAlm="true"
+            IgnorePosition="true"
+            IgnoreNav="true"
+            IgnoreTime="true"
+        />
+        <req_ftest
+            Prn="1"
+            FactoryTestMode="GL_FACT_TEST_CONT"
+            FactoryTestItems="GL_FACT_TEST_WER"
+            AveragingIntervalSec="10"
+            DurationSec="65"
+        />
+    </task>
+</job>
 
 </glgps>

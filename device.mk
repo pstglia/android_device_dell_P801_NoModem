@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-BOARD_TOUCHSCREEN_DRIVER := synaptics_dsx
+BOARD_TOUCHSCREEN_DRIVER := rmi4_ts
 
 # call dalvik heap config
 $(call inherit-product-if-exists, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
@@ -37,8 +37,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     device/dell/P801_NoModem/audio/asound.conf:system/etc/asound.conf \
-    device/dell/P801_NoModem/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    device/dell/P801_NoModem/audio/route_criteria.conf:system/etc/route_criteria.conf
+    device/dell/P801_NoModem/audio/audio_policy.conf:system/etc/audio_policy.conf
+#    device/dell/P801_NoModem/audio/route_criteria.conf:system/etc/route_criteria.conf
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
