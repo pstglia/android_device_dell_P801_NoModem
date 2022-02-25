@@ -169,7 +169,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 BOARD_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
 TARGET_RECOVERY_FSTAB := device/dell/P801_NoModem/rootdir/etc/fstab.P801_NoModem
-TARGET_RECOVERY_DEVICE_MODULES := libinit_ctp librecovery_updater_ctp intel_prop thermald upi_ug31xx
+TARGET_RECOVERY_DEVICE_MODULES := libinit_ctp librecovery_updater_ctp
 # Security
 BUILD_WITH_SECURITY_FRAMEWORK := chaabi_token
 BUILD_WITH_CHAABI_SUPPORT := true

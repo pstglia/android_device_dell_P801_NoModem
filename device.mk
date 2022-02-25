@@ -192,7 +192,6 @@ PRODUCT_PACKAGES += \
     init.diag.rc \
     init.firmware.rc \
     init.gps.rc \
-    init.logtool.rc \
     init.modem.rc \
     init.P801_NoModem.rc \
     init.platform.usb.rc \
@@ -202,9 +201,6 @@ PRODUCT_PACKAGES += \
     init.wifi.rc \
     init.wifi.vendor.rc \
     init.zram.rc \
-    intel_prop \
-    intel_prop.cfg \
-    thermald \
     ueventd.P801_NoModem.rc \
     gps_daemon.sh \
     gps_lto.sh \
@@ -270,7 +266,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/dell/P801_NoModem/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
-$(call inherit-product-if-exists, vendor/dell/P801_NoModem/T00F-vendor.mk)
+$(call inherit-product-if-exists, vendor/dell/P801_NoModem/P801_NoModem-vendor.mk)
 
 # Intel_updater
 PRODUCT_PACKAGES += \
