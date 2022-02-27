@@ -104,6 +104,8 @@ BOARD_HAL_STATIC_LIBRARIES := libhealthd.clovertrail
 BUILD_ARM_FOR_X86 := true
 
 # IMG graphics
+# Rem: Some sources check this "ASUS" define - keepping for venue...
+BOARD_GLOBAL_CFLAGS += -DASUS_ZENFONE2_LP_BLOBS
 ENABLE_IMG_GRAPHICS := true
 HWUI_IMG_FBO_CACHE_OPTIM := true
 TARGET_INTEL_HWCOMPOSER_FORCE_ONLY_ONE_RGB_LAYER := true
