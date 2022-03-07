@@ -205,7 +205,8 @@ PRODUCT_PACKAGES += \
     gps_daemon.sh \
     gps_lto.sh \
     init.compass.rc \
-    init.wireless.rc
+    init.wireless.rc \
+    debuglog.sh
 
 # Stlport
 PRODUCT_PACKAGES += \
@@ -301,3 +302,6 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4339
 # hardware optimizations
 #PRODUCT_PROPERTY_OVERRIDES += \
 #    dalvik.vm.isa.x86.features=sse4_2,aes_in,popcnt,movbe
+
+PRODUCT_COPY_FILES += \
+    device/dell/P801_NoModem/debuglog.sh:sbin/debuglog.sh
