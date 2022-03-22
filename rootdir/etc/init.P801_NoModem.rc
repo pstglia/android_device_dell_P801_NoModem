@@ -158,10 +158,9 @@ on post-fs
     chown media system /sys/devices/platform/gpio-keys/enabled_wakeup
     chown media system /sys/devices/platform/gpio-keys/disabled_wakeup
 
-    # Insert touchscreen module
-    insmod /lib/modules/rmi4.ko
-
-
+    # Insert wifi module
+    insmod /lib/modules/cfg80211.ko
+    insmod /lib/modules/bcm4330.ko firmware_path=/system/etc/firmware/fw_bcmdhd.bin nvram_path=/system/etc/firmware/bcmdhd_aob.cal
 
 # hall sensor
     chown system system /sys/kernel/hall_sensor_kobject/hall_sensor/activity
