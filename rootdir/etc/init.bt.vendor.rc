@@ -3,6 +3,7 @@
 ########################################################
 
 on post-fs
+    insmod /lib/modules/bcm_bt_lpm.ko
     chmod 0660 /sys/class/rfkill/rfkill2/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill2/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill2/type
