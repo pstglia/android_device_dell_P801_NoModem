@@ -15,7 +15,7 @@
 
 # Audience device to audio group
 /dev/audience_es305                     0770   audio      audio
-/dev/intel_sst_ctrl                     0600   media      media
+/dev/intel_sst_ctrl                     0660   media      media
 /dev/switch_ctrl                        0660   media      media
 
 # The Intel camera device node should not be world writable/readable.
