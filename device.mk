@@ -42,7 +42,11 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
-    device/dell/P801_NoModem/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+    device/dell/P801_NoModem/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf \
+    device/dell/P801_NoModem/bluetooth/bt_Tablet8.conf:system/etc/bluetooth/bt_Tablet8.conf \
+    device/dell/P801_NoModem/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
+    device/dell/P801_NoModem/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
+    device/dell/P801_NoModem/bluetooth/auto_pair_devlist.conf:system/etc/bluetooth/auto_pair_devlist.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
     bt.hfp.WideBandSpeechEnabled=true
