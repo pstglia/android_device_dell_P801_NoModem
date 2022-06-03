@@ -24,6 +24,9 @@
 /dev/media*                             0660   root       camera
 /dev/ipu-psys*                          0660   root       camera
 
+# Intel SCU watchdog
+/dev/watchdog                           0660   system     system
+
 # Device needed by shared transport layer (used by bluetooth, FM and GPS)
 /dev/rfkill                             0666   bluetooth  bluetooth
 /dev/hci_tty                            0660   bluetooth  bluetooth
@@ -113,4 +116,18 @@ mod:bcm4334x            firmware_path=/system/etc/firmware/ nvram_path=/system/e
 mod:bcm4334             firmware_path=/system/etc/firmware/ nvram_path=/system/etc/firmware/
 mod:bcm4354             firmware_path=/system/etc/firmware/ nvram_path=/system/etc/firmware/
 mod:bcm4330            firmware_path=/system/etc/firmware/ nvram_path=/system/etc/firmware/
+
+mod:8723bs              ifname=wlan0 if2name=p2p0 rtw_power_mgnt=2 rtw_hwpwrp_detect=1
+
+# Define wlan.driver.vendor for different vendors
+# bcm
+uevent:sdio:c*v02D0d*   setprop wlan.driver.vendor bcm
+# ti
+uevent:sdio:c*v0097d*   setprop wlan.driver.vendor ti
+# mtk
+uevent:sdio:c*v037Ad*   setprop wlan.driver.vendor mtk
+# intel
+uevent:sdio:c*v0089d*   setprop wlan.driver.vendor intel
+# realtek
+uevent:sdio:c*v024Cd*   setprop wlan.driver.vendor rtl
 
