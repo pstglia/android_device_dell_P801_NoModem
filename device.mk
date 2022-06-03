@@ -139,7 +139,8 @@ PRODUCT_PACKAGES += \
 
 # Media: libstagefrighthw
 PRODUCT_PACKAGES += \
-    libstagefrighthw
+    libstagefrighthw \
+    libshims_wvm
 
 # libmix
 PRODUCT_PACKAGES += \

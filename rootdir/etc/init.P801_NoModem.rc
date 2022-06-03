@@ -20,6 +20,8 @@ on init
     mkdir /data/misc 01771 system misc
     mkdir /data/misc/audio 0770 audio audio
 
+    export LD_SHIM_LIBS "/system/vendor/lib/libwvm.so|libshims_wvm.so"
+
     # Insert GPU driver
     insmod /lib/modules/pnwdisp.ko
     insmod /lib/modules/pvrsgx.ko
@@ -27,7 +29,6 @@ on init
     chmod 0600 /dev/dri/controlD64
 
     # Insert matrix for PnP measurements
-    insmod /lib/modules/matrix.ko
     chmod 0640 /dev/matrix
 
     setprop_from_sysfs /sys/kernel/fw_update/fw_info/ia32fw_version sys.ia32.version
