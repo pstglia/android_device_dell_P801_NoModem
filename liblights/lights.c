@@ -125,9 +125,20 @@ set_light_backlight(__attribute__((unused)) struct light_device_t* dev,
     if(!dev) {
         return -1;
     }
+
+    // pstglia: ensure values are inside range (0~100)
+   if (brightness < 0) {
+     brightness = 0;
+   }
+
+   if (brightness > 100) {
+     brightness = 100;
+   }
+
     pthread_mutex_lock(&g_lock);
     err = write_int(LCD_FILE, brightness);
     pthread_mutex_unlock(&g_lock);
+    //ALOGD("PST DEBUG - inside set_light_backlight - brighness: %d, err: %d", brightness, err);
     return err;
 }
 
