@@ -19,10 +19,10 @@
 /dev/switch_ctrl                        0660   media      media
 
 # The Intel camera device node should not be world writable/readable.
-/dev/video*                             0660   root       camera
-/dev/v4l-subdev*                        0660   root       camera
-/dev/media*                             0660   root       camera
-/dev/ipu-psys*                          0660   root       camera
+/dev/video*                             0660   media       camera
+/dev/v4l-subdev*                        0660   media       camera
+/dev/media*                             0660   media       camera
+/dev/ipu-psys*                          0660   media       camera
 
 # Intel SCU watchdog
 /dev/watchdog                           0660   system     system

@@ -37,6 +37,7 @@ namespace android {
 // ----------------------------------------------------------------------------
 
 static String16 gPackageName = String16("packageName");
+pthread_mutex_t _ZN7android9SingletonINS_13SensorManagerEE5sLockE = PTHREAD_MUTEX_INITIALIZER;
 
 ANDROID_SINGLETON_STATIC_INSTANCE(SensorManager)
 

@@ -20,7 +20,7 @@ on init
     mkdir /data/misc 01771 system misc
     mkdir /data/misc/audio 0770 audio audio
 
-    export LD_SHIM_LIBS "/system/vendor/lib/libwvm.so|libshims_wvm.so"
+    export LD_SHIM_LIBS "/system/vendor/lib/libwvm.so|libshims_wvm.so:/system/lib/hw/camera.vendor.P801_NoModem.so|libshim_camera.so"
 
     # Insert GPU driver
     insmod /lib/modules/pnwdisp.ko
