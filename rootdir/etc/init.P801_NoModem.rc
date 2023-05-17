@@ -333,8 +333,6 @@ on charger
     setprop ro.boot.min.cap 3
     start watchdogd
     insmod /lib/modules/rmi4.ko boot_mode=1
-    insmod /lib/modules/atomisp-css2300.ko
-    
 
 # Add for USB ethernet dongle
 service dhcpcd_eth0 /system/bin/dhcpcd -ABDKL -f/system/etc/dhcpcd/dhcpcd.conf
