@@ -197,7 +197,6 @@ PRODUCT_PACKAGES += \
     init.diag.rc \
     init.firmware.rc \
     init.gps.rc \
-    init.modem.rc \
     init.P801_NoModem.rc \
     init.platform.usb.rc \
     init.power.P801_NoModem.rc \
