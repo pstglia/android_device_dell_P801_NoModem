@@ -7,8 +7,7 @@
 #/dev/block/by-name/boot     /boot       osip    defaults    recoveryonly
 #/dev/block/by-name/recovery /recovery   osip    defaults    recoveryonly
 
-*/block/mmcblk1                                 auto            vfat    None    wait,voldmanaged=sdcard1:auto
-*/block/sd                                      auto            vfat    None    wait,voldmanaged=usbcard1:auto
-
+*/block/sda*            auto        auto    defaults    voldmanaged=usb:auto
+*/block/mmcblk1*        auto        auto    defaults    voldmanaged=sdcard1:auto,encryptable=userdata
 
 /dev/block/zram0        none        swap    defaults    zramsize=419430400,zramstreams=3,notrim
