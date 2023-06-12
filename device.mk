@@ -210,7 +210,8 @@ PRODUCT_PACKAGES += \
     gps_lto.sh \
     init.compass.rc \
     init.wireless.rc \
-    debuglog.sh
+    debuglog.sh \
+    intel_prop.cfg
 
 # Stlport
 PRODUCT_PACKAGES += \
