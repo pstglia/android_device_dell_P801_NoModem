@@ -38,6 +38,8 @@ on init
     setprop_from_sysfs /sys/kernel/fw_update/fw_info/scu_version sys.scu.version
     setprop_from_sysfs /sys/kernel/fw_update/fw_info/valhooks_version sys.valhooks.version
 
+    # disable ril
+    setprop ro.radio.noril 1
 
 on boot
 #  Mount debugfs for systrace settings
